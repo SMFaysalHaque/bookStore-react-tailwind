@@ -194,6 +194,15 @@ const PaginationBooks = () => {
                   <p className="mt-2 text-sm font-medium text-gray-800 line-clamp-2">
                     {book.title}
                   </p>
+                  {book.authors.map((author, ind) => (
+                    <p
+                      key={ind}
+                      className="mt-1 text-xs text-gray-800 line-clamp-1"
+                    >
+                      Author(s):{" "}
+                      <span className="text-orange-400">{author.name}</span>
+                    </p>
+                  ))}
                 </div>
 
                 <div className="flex justify-start items-center gap-3 mt-3">
