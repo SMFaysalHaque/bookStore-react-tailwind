@@ -128,7 +128,9 @@ export default function Navbar() {
                     key={item}
                     className="py-2"
                   >
-                    <Link to={`/books/${item}`}>{item}</Link>
+                    <Link to={`/books/${encodeURIComponent(`${item}`)}`}>
+                      {item}
+                    </Link>
                   </li>
                 ))}
               </ul>
