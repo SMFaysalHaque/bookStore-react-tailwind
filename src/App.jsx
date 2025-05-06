@@ -11,12 +11,12 @@ function App() {
     <div className="">
       <BrowserRouter>
         <nav className="bg-[#FF7F50]">
-          <div className="lg:w-[1024px] w-full mx-auto lg:px-0 px-4 py-4">
+          <div className="lg:w-[1024px] w-full mx-auto xl:px-0  px-4 py-4">
             <Navbar />
           </div>
         </nav>
         <main className="bg-[#FFE5B4]">
-          <div className="lg:w-[1024px] w-full mx-auto lg:px-0 px-4 py-4">
+          <div className="lg:w-[1024px] w-full mx-auto xl:px-0 px-4 py-4">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/wishList" element={<WishList />} />
@@ -26,7 +26,7 @@ function App() {
           </div>
         </main>
         <footer className="bg-[#8B4513]">
-          <div className="lg:w-[1024px] w-full mx-auto lg:px-0 px-4 py-4">
+          <div className="lg:w-[1024px] w-full mx-auto xl:px-0 px-4 py-4">
             <Footer />
           </div>
         </footer>
