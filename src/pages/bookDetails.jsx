@@ -77,12 +77,12 @@ export default function BookDetails() {
                 {/* Buttons */}
                 <div className="flex md:flex-row flex-col pt-4 gap-3">
                   <Link to={book.formats["application/octet-stream"]}>
-                    <button className="px-5 py-2 border border-gray-300 rounded hover:bg-gray-100 transition">
+                    <button className="w-full px-5 py-2 border border-gray-300 rounded hover:bg-gray-100 transition">
                       Download
                     </button>
                   </Link>
                   <Link to={book.formats["text/html"]}>
-                    <button className="px-5 py-2 bg-orange-200 text-orange-800 hover:bg-orange-300 hover:text-orange-900 border border-orange-300 rounded disabled:opacity-50 transition">
+                    <button className="w-full px-5 py-2 bg-orange-200 text-orange-800 hover:bg-orange-300 hover:text-orange-900 border border-orange-300 rounded disabled:opacity-50 transition">
                       Online Reading
                     </button>
                   </Link>
