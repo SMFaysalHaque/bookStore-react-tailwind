@@ -1,49 +1,97 @@
-import { useParams } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import CircleLoader from "../components/CircleLoader";
 
 export default function BookDetails() {
-  const { name } = useParams();
+  const { id } = useParams();
+  const [results, setResults] = useState([]);
+  const [apiError, setApiError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [bookId, setBookId] = useState("");
 
-  console.log(name);
+  useEffect(() => {
+    const numericId = id?.replace(/\D/g, "");
+    setBookId(numericId);
+    if (!numericId) return;
+
+    setLoading(true);
+    setApiError(false);
+
+    axios
+      .get(`https://gutendex.com/books?ids=${numericId}`)
+      .then((res) => {
+        setResults(res.data.results || []);
+      })
+      .catch((err) => {
+        console.error("Error fetching books:", err);
+        setApiError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [id]);
 
   return (
-    <div className="bg-gray-100 min-h-screen p-4 flex justify-center items-center">
-      <div className="max-w-4xl w-full bg-white shadow rounded-lg p-4 flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
-        {/* Book Cover */}
-        <div className="w-full md:w-1/3">
-          <img
-            src="/book1.PNG" // Place the image in the public folder
-            alt="Little Women Cover"
-            className="w-full h-auto rounded border border-gray-300"
-          />
-        </div>
+    <div className="min-h-screen">
+      {loading && <CircleLoader />}
+      {!loading && !apiError && (
+        <div className="flex justify-center items-start bg-[radial-gradient(circle_at_center,_#fed7aa,_#ffffff)] py-10 px-6 rounded-lg shadow-xl">
+          {results.map((book, index) => (
+            <div
+              key={index}
+              className="max-w-4xl w-full bg-white shadow-xl rounded-lg p-6 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8"
+            >
+              {/* Book Cover */}
+              <div className="w-full md:w-1/3">
+                <img
+                  src={book.formats["image/jpeg"]}
+                  alt="Little Women Cover"
+                  className="w-full lg:h-[375px] h-[350px] rounded-lg border border-gray-300"
+                />
+              </div>
 
-        {/* Book Details */}
-        <div className="w-full md:w-2/3 space-y-2">
-          <h2 className="text-xl font-bold">
-            Title:{" "}
-            <span className="text-black">
-              Little Women; Or, Meg, Jo, Beth, and Amy
-            </span>
-          </h2>
-          <p className="text-gray-700">
-            Author:{" "}
-            <span className="text-blue-600 hover:underline cursor-pointer">
-              Alcott, Louisa May
-            </span>
-          </p>
-          <p className="text-sm text-gray-500">Id: 37106</p>
+              {/* Book Details */}
+              <div className="w-full md:w-2/3 space-y-3">
+                <h2 className="text-2xl font-bold text-orange-800">
+                  Title: <span className="text-gray-800">{book.title}</span>
+                </h2>
+                {book.authors.map((author, authorInd) => (
+                  <p key={authorInd} className="text-gray-700">
+                    Author:{" "}
+                    <span className="text-orange-600 hover:underline cursor-pointer">
+                      {author.name}
+                    </span>
+                  </p>
+                ))}
+                <p className="text-sm text-gray-500">Book ID: {bookId}</p>
+                {book.summaries.map((summary, summaryInd) => (
+                  <p key={summaryInd} className="font-medium">
+                    Summary:{" "}
+                    <span className="text-sm font-normal text-gray-500">
+                      {summary}
+                    </span>
+                  </p>
+                ))}
 
-          {/* Buttons */}
-          <div className="pt-4 space-x-2">
-            <button className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100">
-              Download
-            </button>
-            <button className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600">
-              Online Reading
-            </button>
-          </div>
+                {/* Buttons */}
+                <div className="flex md:flex-row flex-col pt-4 gap-3">
+                  <Link to={book.formats["application/octet-stream"]}>
+                    <button className="px-5 py-2 border border-gray-300 rounded hover:bg-gray-100 transition">
+                      Download
+                    </button>
+                  </Link>
+                  <Link to={book.formats["text/html"]}>
+                    <button className="px-5 py-2 bg-orange-200 text-orange-800 hover:bg-orange-300 hover:text-orange-900 border border-orange-300 rounded disabled:opacity-50 transition">
+                      Online Reading
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      )}
     </div>
   );
 }
