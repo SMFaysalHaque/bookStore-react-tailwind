@@ -20,9 +20,9 @@ export default function WishList() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen">
       {results.length === 0 ? (
-        <div className="min-h-screen flex justify-center items-center text-4xl font-bold">
+        <div className="flex justify-center items-center text-4xl font-bold">
           No wishes
           <p className="mx-4">
             <svg
@@ -39,53 +39,56 @@ export default function WishList() {
           !!!
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3">
-          {results.map((book) => (
-            <div
-              key={book.id}
-              className="h-[300px] p-3 rounded-lg shadow-sm bg-gradient-to-b from-amber-100 to-orange-50 hover:shadow-md transition duration-300 flex flex-col justify-between"
-            >
-              <div className="flex flex-col items-start">
-                <img
-                  src={book.formats["image/jpeg"]}
-                  alt={book.title}
-                  className="w-[90px] h-[135px] object-cover rounded-sm shadow-sm"
-                />
-                <p className="mt-2 text-sm font-medium text-gray-800 line-clamp-2">
-                  {book.title}
-                </p>
-                {book.authors.map((author, ind) => (
-                  <p
-                    key={ind}
-                    className="mt-1 text-xs text-gray-800 line-clamp-1"
-                  >
-                    Author(s):{" "}
-                    <span className="text-orange-400">{author.name}</span>
+        <div>
+          <p className="text-2xl font-bold mb-10">Wish Lists: </p>
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            {results.map((book) => (
+              <div
+                key={book.id}
+                className="h-[300px] p-3 rounded-lg shadow-sm bg-gradient-to-b from-amber-100 to-orange-50 hover:shadow-md transition duration-300 flex flex-col justify-between"
+              >
+                <div className="flex flex-col items-start">
+                  <img
+                    src={book.formats["image/jpeg"]}
+                    alt={book.title}
+                    className="w-[90px] h-[135px] object-cover rounded-sm shadow-sm"
+                  />
+                  <p className="mt-2 text-sm font-medium text-gray-800 line-clamp-2">
+                    {book.title}
                   </p>
-                ))}
-              </div>
+                  {book.authors.map((author, ind) => (
+                    <p
+                      key={ind}
+                      className="mt-1 text-xs text-gray-800 line-clamp-1"
+                    >
+                      Author(s):{" "}
+                      <span className="text-orange-400">{author.name}</span>
+                    </p>
+                  ))}
+                </div>
 
-              <div className="flex justify-start items-center gap-3 mt-3">
-                <Link to={`/bookDetails/id=${book.id}`}>
-                  <button className="text-xs bg-orange-100 text-orange-800 hover:bg-orange-200 hover:text-orange-900 border border-orange-300 rounded px-2 py-1 transition duration-200">
-                    Details
+                <div className="flex justify-start items-center gap-3 mt-3">
+                  <Link to={`/bookDetails/id=${book.id}`}>
+                    <button className="text-xs bg-orange-100 text-orange-800 hover:bg-orange-200 hover:text-orange-900 border border-orange-300 rounded px-2 py-1 transition duration-200">
+                      Details
+                    </button>
+                  </Link>
+
+                  <button onClick={() => removeBook(book)}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#EA3323"
+                    >
+                      <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z" />
+                    </svg>
                   </button>
-                </Link>
-
-                <button onClick={() => removeBook(book)}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="24px"
-                    viewBox="0 -960 960 960"
-                    width="24px"
-                    fill="#EA3323"
-                  >
-                    <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z" />
-                  </svg>
-                </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>
