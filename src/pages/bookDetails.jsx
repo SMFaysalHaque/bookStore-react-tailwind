@@ -42,7 +42,6 @@ export default function BookDetails() {
               key={index}
               className="max-w-4xl w-full bg-white shadow-xl rounded-lg p-6 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8"
             >
-              {/* Book Cover */}
               <div className="w-full md:w-1/3">
                 <img
                   src={book.formats["image/jpeg"]}
@@ -51,7 +50,6 @@ export default function BookDetails() {
                 />
               </div>
 
-              {/* Book Details */}
               <div className="w-full md:w-2/3 space-y-3">
                 <h2 className="text-2xl font-bold text-orange-800">
                   Title: <span className="text-gray-800">{book.title}</span>
@@ -74,7 +72,6 @@ export default function BookDetails() {
                   </p>
                 ))}
 
-                {/* Buttons */}
                 <div className="flex md:flex-row flex-col pt-4 gap-3">
                   <Link to={book.formats["application/octet-stream"]}>
                     <button className="w-full px-5 py-2 border border-gray-300 rounded hover:bg-gray-100 transition">
