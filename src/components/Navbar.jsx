@@ -100,6 +100,9 @@ export default function Navbar() {
       const stored = JSON.parse(localStorage.getItem("wishlists")) || [];
       setWishlists(stored);
     };
+
+    updateWishlist();
+
     window.addEventListener("wishlistUpdated", updateWishlist);
     return () => window.removeEventListener("wishlistUpdated", updateWishlist);
   }, []);
@@ -188,23 +191,26 @@ export default function Navbar() {
                 <p>No books found.</p>
               ) : (
                 results.map((book) => (
-                  <div
+                  <Link
                     key={book.id}
-                    className="flex justify-between gap-3 py-1 border-b"
+                    to={`/bookDetails/id=${book.id}`}
+                    onClick={() => setSearchTerm("")}
                   >
-                    <div className="flex gap-3">
-                      <img
-                        className="h-14 w-10"
-                        src={book.formats["image/jpeg"]}
-                        alt={book.id}
-                      />
-                      <p className="truncate w-[300px]">
-                        <span className="font-bold mr-2">Title:</span>
-                        {book.title}
-                      </p>
+                    <div className="flex justify-between gap-3 py-1 border-b">
+                      <div className="flex gap-3">
+                        <img
+                          className="h-14 w-10"
+                          src={book.formats["image/jpeg"]}
+                          alt={book.id}
+                        />
+                        <p className="truncate w-[300px]">
+                          <span className="font-bold mr-2">Title:</span>
+                          {book.title}
+                        </p>
+                      </div>
+                      <p>{book.id}</p>
                     </div>
-                    <p>{book.id}</p>
-                  </div>
+                  </Link>
                 ))
               )}
             </div>
