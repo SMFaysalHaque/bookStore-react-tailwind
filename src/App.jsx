@@ -10,13 +10,13 @@ function App() {
   return (
     <div className="">
       <BrowserRouter>
-        <nav className="bg-[#FF7F50]">
-          <div className="lg:w-[1024px] w-full mx-auto xl:px-0  px-4 py-4">
+        <nav className="bg-[#FF7F50] fixed top-0 left-0 w-full z-50 shadow-md">
+          <div className="lg:w-[1024px] w-full mx-auto xl:px-0 px-4">
             <Navbar />
           </div>
         </nav>
         <main className="bg-[#FFE5B4]">
-          <div className="lg:w-[1024px] w-full mx-auto xl:px-0 px-4 py-4">
+          <div className="lg:w-[1024px] w-full mx-auto xl:px-0 px-4 pt-28 pb-10">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/wishList" element={<WishList />} />
