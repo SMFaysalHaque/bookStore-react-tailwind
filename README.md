@@ -33,3 +33,8 @@ Open this link in any web browser to view the project.
 **2. react-hook-form** <br/>
 **3. swiper** <br/>
 **4. axios**
+
+### 🧹 **Code Quality:**
+
+**1. Prettier** – Code formatting <br/>
+**2. ESLint** – Code linting
