@@ -1,12 +1,35 @@
-# React + Vite
+# **_Tea & TALES_**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**_Live Website:_** [Tea & TALES](https://book-store-react-tailwind.vercel.app/)
 
-Currently, two official plugins are available:
+## 🛠️ **(React+Tailwind+Js)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🚀 **How to run locally:**
 
-## Expanding the ESLint configuration
+To run the project locally, please follow the steps below after downloading it from the repository:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Open the project folder in a code editor. One commonly used editor is Visual Studio Code (VS Code).
+
+2. Open the terminal in your code editor and run the command:
+`npm install` or `npm i`
+This will install all the required dependencies for the project.
+
+3. Once the installation is complete, run the following command to start the development server:
+`npm run dev`
+
+4. After running the command, a local server URL will appear in the terminal, such as:
+`http://localhost:5173/`
+Open this link in any web browser to view the project.
+
+### 🧱 **Stack:**
+
+**1. React** <br/>
+**2. Tailwind** <br/>
+**3. JavaScript**
+
+### 📦 **Key Packages:**
+
+**1. react-router** <br/>
+**2. react-hook-form** <br/>
+**3. swiper** <br/>
+**4. axios**
